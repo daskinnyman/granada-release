@@ -8,6 +8,12 @@ class Granada < Formula
   depends_on "node"
 
   def install
+    # Release tarball already contains dist/. Drop the build toolchain so
+    # Homebrew does not rewrite tsdown → yuku-codegen Mach-O install names.
+    require "json"
+    pkg = JSON.parse((buildpath/"package.json").read)
+    %w[tsdown tsx typescript].each { |name| pkg["dependencies"]&.delete(name) }
+    (buildpath/"package.json").atomic_write(JSON.pretty_generate(pkg) + "\n")
     system "npm", "install", "--ignore-scripts", "--omit=dev", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
   end
