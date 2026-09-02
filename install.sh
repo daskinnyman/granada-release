@@ -3,10 +3,13 @@
 # Puts `granada` in ~/.local/bin from a GitHub Release tarball (no git clone).
 # Requires Node.js 22.12+ (Granada is a Node CLI, not a native binary).
 #
-#   curl -fsSL https://raw.githubusercontent.com/daskinnyman/granada-release/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/daskinnyman/granada/main/scripts/install.sh | bash
+# Private repo:
+#   curl -fsSL -H "Authorization: Bearer $(gh auth token)" \
+#     https://raw.githubusercontent.com/daskinnyman/granada/main/scripts/install.sh | bash
 set -euo pipefail
 
-REPO="${GRANADA_REPO:-daskinnyman/granada-release}"
+REPO="${GRANADA_REPO:-daskinnyman/granada}"
 VERSION="${GRANADA_VERSION:-latest}"
 PREFIX="${GRANADA_PREFIX:-${HOME}/.local}"
 MIN_NODE_MAJOR=22
@@ -58,7 +61,7 @@ download_with_gh() {
 
 download_with_curl() {
   local dest_dir="$1"
-  local api token curl_auth=() asset_meta tag asset_name dest
+  local api token curl_auth=() asset_meta asset_id asset_name dest
   command -v curl >/dev/null 2>&1 || die "curl is required to download the release"
 
   if [[ "${VERSION}" == "latest" ]]; then
@@ -76,17 +79,16 @@ download_with_curl() {
     | node --input-type=commonjs -e '
 const fs = require("fs");
 const data = JSON.parse(fs.readFileSync(0, "utf8"));
-const tag = String(data.tag_name ?? "");
 const assets = Array.isArray(data.assets) ? data.assets : [];
 const asset = assets.find((item) => item.name === "granada.tgz")
   ?? assets.find((item) => /^granada-.*\.tgz$/.test(String(item.name)));
-if (!tag || !asset || !asset.name) process.exit(2);
-process.stdout.write(JSON.stringify({ tag: tag, name: asset.name }));
-')" || die "failed to fetch ${api}"
+if (!asset || asset.id == null || !asset.name) process.exit(2);
+process.stdout.write(JSON.stringify({ id: asset.id, name: asset.name }));
+')" || die "failed to fetch ${api} (private repo needs gh auth login or GITHUB_TOKEN)"
 
-  tag="$(printf '%s' "${asset_meta}" | node --input-type=commonjs -e '
+  asset_id="$(printf '%s' "${asset_meta}" | node --input-type=commonjs -e '
 const fs = require("fs");
-process.stdout.write(String(JSON.parse(fs.readFileSync(0, "utf8")).tag));
+process.stdout.write(String(JSON.parse(fs.readFileSync(0, "utf8")).id));
 ')"
   asset_name="$(printf '%s' "${asset_meta}" | node --input-type=commonjs -e '
 const fs = require("fs");
@@ -94,10 +96,10 @@ process.stdout.write(String(JSON.parse(fs.readFileSync(0, "utf8")).name));
 ')"
   dest="${dest_dir}/${asset_name}"
 
-  curl -fsSL "${curl_auth[@]}" -L \
+  curl -fsSL "${curl_auth[@]}" -H 'Accept: application/octet-stream' \
     -o "${dest}" \
-    "https://github.com/${REPO}/releases/download/${tag}/${asset_name}" \
-    || die "failed to download ${asset_name} from ${REPO} ${tag}"
+    "https://api.github.com/repos/${REPO}/releases/assets/${asset_id}" \
+    || die "failed to download release asset ${asset_id}"
 }
 
 first_tarball() {
