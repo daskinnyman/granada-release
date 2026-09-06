@@ -145,7 +145,12 @@ trap cleanup EXIT
 tarball="$(resolve_tarball)"
 [[ -f "${tarball}" ]] || die "tarball not found: ${tarball}"
 
-install_cmd=(npm install -g --omit=dev --ignore-scripts --prefix "${PREFIX}" "${tarball}")
+# --legacy-peer-deps hides no resolution error: granada declares no peer
+# dependencies. It is what lets this script still install the tarballs already
+# published with a build toolchain in "dependencies", whose optional peer graph
+# crashes npm's ideal-tree walk (edgesOut on null). Releases from 0.7.1 on ship
+# a manifest that does not need it.
+install_cmd=(npm install -g --omit=dev --ignore-scripts --legacy-peer-deps --prefix "${PREFIX}" "${tarball}")
 
 if [[ "${GRANADA_DRY_RUN:-}" == "1" ]]; then
   printf '%s\n' "${install_cmd[*]}"
