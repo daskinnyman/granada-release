@@ -15,4 +15,4 @@ brew install granada
 curl -fsSL https://raw.githubusercontent.com/daskinnyman/granada-release/main/install.sh | bash
 ```
 
-Pin a version with `GRANADA_VERSION=0.9.0`.
+Pin a version with `GRANADA_VERSION=0.9.1`.
