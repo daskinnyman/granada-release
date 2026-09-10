@@ -1,9 +1,9 @@
 class Granada < Formula
   desc "Vendor-neutral software factory: spec review, implementation, and change visualization"
   homepage "https://github.com/daskinnyman/granada-release"
-  url "https://github.com/daskinnyman/granada-release/releases/download/v0.10.1/granada-0.10.1.tgz"
-  sha256 "c19b10347d3a5055194386063d5cd387c9336f3360d6324cb95d15a08473fed4"
-  version "0.10.1"
+  url "https://github.com/daskinnyman/granada-release/releases/download/v0.10.2/granada-0.10.2.tgz"
+  sha256 "ec7f1a7f8ede22b50204c411a03770ee5e2c8b2e269448ee4c5338f619259f7d"
+  version "0.10.2"
 
   depends_on "node"
 
