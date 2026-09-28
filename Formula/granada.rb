@@ -1,9 +1,9 @@
 class Granada < Formula
-  desc "Vendor-neutral software factory: spec review, implementation, and change visualization"
+  desc "Host-native software factory: one-line intent in, merge-ready draft PR out, run from inside your agent CLI"
   homepage "https://github.com/daskinnyman/granada-release"
-  url "https://github.com/daskinnyman/granada-release/releases/download/v0.11.2/granada-0.11.2.tgz"
-  sha256 "b4b7c8eb30380c46a71954e6bef70ed1b9e67fca62209ebacb3fa00c3815f668"
-  version "0.11.2"
+  url "https://github.com/daskinnyman/granada-release/releases/download/v0.11.3/granada-0.11.3.tgz"
+  sha256 "812dd2483b93cf451bbd026b472e43c1b7759d3e996942001e06e3544c57915d"
+  version "0.11.3"
 
   depends_on "node"
 
