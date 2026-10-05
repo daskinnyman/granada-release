@@ -16,7 +16,7 @@ VERSION="${GRANADA_VERSION:-latest}"
 PREFIX="${GRANADA_PREFIX:-${HOME}/.local}"
 MIN_NODE_MAJOR=22
 MIN_NODE_MINOR=12
-# The OpenSpec the host needs on its own PATH: SPEC_TOOL_VERSION in
+# The OpenSpec a repository on OpenSpec needs on the host's own PATH: SPEC_TOOL_VERSION in
 # src/cli/host-deps.ts. This script runs before any Granada code, so it keeps
 # a copy; tests/install-release.test.ts fails when the two differ.
 OPENSPEC_PACKAGE="@fission-ai/openspec@1.13.2"
@@ -193,9 +193,10 @@ esac
 
 log "installed ${bin_path}"
 log "next steps:"
-log "  1. install OpenSpec globally, so your host CLI finds it on its own PATH:"
-log "       npm install -g ${OPENSPEC_PACKAGE}"
-log "  2. in your repository (an empty folder needs \`git init\` first):"
+log "  1. in your repository (an empty folder needs \`git init\` first):"
 log "       granada host sync"
-log "  3. start your host CLI in that repository and run a track:"
+log "  2. start your host CLI in that repository and run a track:"
 log "       /granada-feature, /granada-patch or /granada-bootstrap"
+log "  Only if your repository writes its specs with OpenSpec, install it globally,"
+log "  so your host CLI finds it on its own PATH:"
+log "       npm install -g ${OPENSPEC_PACKAGE}"
