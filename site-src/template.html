@@ -140,6 +140,14 @@
       <div class="role"><h3><span>02</span>{{role2_h}}</h3><p>{{role2}}</p></div>
       <div class="role"><h3><span>03</span>{{role3_h}}</h3><p>{{role3}}</p></div>
     </div>
+
+    <figure class="intro-video">
+      <video controls preload="metadata" playsinline poster="{{root}}media/{{video_poster}}" aria-label="{{video_label}}">
+        <source src="{{root}}media/{{video_file}}" type="video/mp4">
+        <a href="{{root}}media/{{video_file}}">{{video_fallback}}</a>
+      </video>
+      <figcaption>{{video_caption}}</figcaption>
+    </figure>
   </div>
 </section>
 
