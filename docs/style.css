@@ -120,6 +120,12 @@ h3 { font-family: var(--mono); }
 .role h3 { font-size: 14px; color: var(--hi); margin: 0 0 8px; font-weight: 600; }
 .role h3 span { color: var(--warn); margin-right: 10px; font-weight: 400; }
 .role p { margin: 0; font-size: 13px; color: var(--ink); }
+.intro-video { position: relative; margin: 56px 0 0; border: 1px solid var(--rule); background: rgba(6, 21, 40, 0.85); padding: 12px; }
+.intro-video::before, .intro-video::after { content: ""; position: absolute; width: 14px; height: 14px; border: 1px solid var(--line); }
+.intro-video::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.intro-video::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.intro-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--navy); }
+.intro-video figcaption { margin-top: 10px; font-size: 10px; letter-spacing: 0.25em; color: var(--dim); text-transform: uppercase; }
 
 /* pipeline */
 .schem { margin-top: 44px; border: 1px solid var(--rule); background: rgba(6, 21, 40, 0.85); padding: 20px 16px; }
