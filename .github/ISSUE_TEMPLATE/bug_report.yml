@@ -1,0 +1,29 @@
+name: Bug report
+description: Something in Granada did not work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the report. Run `granada issue report` in the repository where it happened: it fills the diagnostics below for you, hides your local folders and leaves out your code, your spec and the run's intent.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what Granada did instead.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: The output of `granada issue report`. Without it, give your Granada version (`granada --version`), host and track.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The intent or steps that cause it, if you can share them.
+    validations:
+      required: false

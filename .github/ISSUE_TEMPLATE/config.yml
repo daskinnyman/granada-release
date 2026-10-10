@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the README
+    url: https://github.com/daskinnyman/granada-release#readme
+    about: Install, update and the commands Granada has.
