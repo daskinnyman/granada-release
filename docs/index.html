@@ -222,7 +222,7 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   <div class="wrap">
     <p class="secno">Sheet 06 · Agent setup</p>
     <h2>Let your agent set it up.</h2>
-    <p class="sub">Paste one line into your agent, in the repository where you want Granada. The agent reads the steps and runs them: Node check, install, host sync, host doctor. It asks you before it commits.</p>
+    <p class="sub">Paste one line into your agent, in the repository where you want Granada. The agent reads the steps and runs them: Node check, install, host sync, host doctor. It asks you before it changes your repository.</p>
 
     <div class="one">
       <code id="one-liner">Read https://daskinnyman.github.io/granada-release/setup-prompt.md and follow it.</code>
@@ -261,32 +261,33 @@ Do not use sudo.
      add ~/.local/bin to PATH for this shell and tell me which shell file to
      change.
 
-3. Run `git rev-parse --show-toplevel` to check that this folder is a git
-   repository. `granada host sync` refuses a folder that is not one.
-   If it is not a repository and the folder is empty (a new project), ask
-   me, then run `git init`. In any other case, stop and ask me.
-
-4. Run `granada host sync`, then `granada host doctor`.
+3. Run `granada host sync`, then `granada host doctor`. Sync installs
+   Granada for my user, in each host's config under the home folder, so it
+   works in every repository and leaves nothing to commit.
    Show me every warning or failure that doctor reports. If doctor says the
    host has not approved the `granada` MCP server, tell me how to approve it
-   in this host.
+   in this host. If I want my team to get these files from git, tell me
+   about `granada host sync --shared`, which writes them into the
+   repository to commit. Ask me before you run it.
 
-5. Run `git status` and show me the files that sync wrote. Suggest that I
-   commit them. Ask me before you commit.
+4. Run `git rev-parse --show-toplevel`. Granada's tracks run in a git
+   repository. If this folder is not one and it is empty (a new project),
+   ask me, then run `git init`. In any other case, tell me that the tracks
+   need a git repository and stop.
 
-6. Only if this repository has an `openspec/` folder, run:
+5. Only if this repository has an `openspec/` folder, run:
        npm install -g @fission-ai/openspec@1.13.2
    Plain markdown specs, Granada's default, need nothing installed.
 
-7. If `gh` is not installed, tell me that the GitHub CLI is optional and
+6. If `gh` is not installed, tell me that the GitHub CLI is optional and
    lets Granada open GitHub draft pull requests.
 
-8. If this repository has a package.json, tell me: the feature track runs a
+7. If this repository has a package.json, tell me: the feature track runs a
    mutation station by default, and it needs `@stryker-mutator/core` as a
    devDependency, committed on the base branch. `granada run start` names
    the command to add it. Do not add it unless I ask.
 
-9. Tell me the three commands I can use now:
+8. Tell me the three commands I can use now:
        /granada-feature &lt;what to add&gt;
        /granada-patch &lt;the bug to fix&gt;
        /granada-bootstrap &lt;the project to create&gt;
@@ -323,7 +324,7 @@ brew install granada</code></pre></div>
         <h3><span>C</span>Connect your host</h3>
         <div class="code"><button class="copy-btn mini-copy" type="button" data-target="c-sync">Copy</button><pre><code id="c-sync">granada host sync
 granada host doctor</code></pre></div>
-        <p>Run these in your repository. Sync writes the skills, the MCP server entry and the Stop hook. Doctor checks that the host sees them. Commit the files that sync wrote.</p>
+        <p>Sync installs Granada for your user, under your home folder: every repository and worktree gets the skills, the MCP server entry and the Stop hook, and there is nothing to commit. Add <code>--shared</code> to write the files into the repository for your team to commit, or <code>--local</code> for this checkout only. Doctor checks that the host sees them.</p>
       </div>
       <div class="step">
         <h3><span>D</span>Run a track</h3>
