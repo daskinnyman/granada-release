@@ -2,7 +2,7 @@
 
 > Host-native software factory: from a one-line intent to a merge-ready draft pull request, run by the coding agent already in your CLI session (Claude Code, Codex or Cursor).
 
-Granada owns the track: which station comes next, what each station must hand back, and the checks every answer has to pass. The host agent does the thinking at each agent station; Granada runs the tool stations (worktree, tests, ship checks, quality, mutation, drift, merge, forge) itself and records the run. Three tracks ship: `feature` (a change from a spec), `patch` (one bug fix) and `bootstrap` (a new project). Granada is a Node.js CLI and needs Node.js 22.12 or newer. After `granada host sync` in a git repository, the host has the commands `/granada-feature`, `/granada-patch` and `/granada-bootstrap`.
+Granada owns the track: which station comes next, what each station must hand back, and the checks every answer has to pass. The host agent does the thinking at each agent station; Granada runs the tool stations (worktree, tests, ship checks, quality, mutation, drift, merge, forge) itself and records the run. Three tracks ship: `feature` (a change from a spec), `patch` (one bug fix) and `bootstrap` (a new project). Granada is a Node.js CLI and needs Node.js 22.12 or newer. After `granada host sync`, which installs for the user and works in any folder, the host has the commands `/granada-feature`, `/granada-patch` and `/granada-bootstrap`. The tracks themselves run in a git repository.
 
 To set Granada up for a person, fetch the setup prompt below and follow its steps in order. Use the Traditional Chinese prompt when the person writes in Chinese.
 

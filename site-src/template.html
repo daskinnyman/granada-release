@@ -37,14 +37,14 @@
 <div class="titleblock" aria-hidden="true">
   <div>{{tb_project}}</div><div><b>Granada</b></div>
   <div>{{tb_release}}</div><div><b>v{{version}}</b></div>
-  <div>{{tb_sheet}}</div><div><b id="sheet">01 / 08</b></div>
+  <div>{{tb_sheet}}</div><div><b id="sheet">01 / 12</b></div>
 </div>
 
 <nav class="topnav" aria-label="{{nav_label}}">
   <a class="brand" href="#hero">GRANADA</a>
   <div class="right">
     <div class="links">
-      <a href="#how">{{nav_how}}</a><a href="#tracks">{{nav_tracks}}</a><a href="#setup">{{nav_setup}}</a><a href="#install">{{nav_install}}</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
+      <a href="#how">{{nav_how}}</a><a href="#tracks">{{nav_tracks}}</a><a href="#review">{{nav_tools}}</a><a href="#setup">{{nav_setup}}</a><a href="#install">{{nav_install}}</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
     </div>
     <div class="lang" aria-label="Language / 語言">
       <a href="{{href_en}}" hreflang="en" lang="en" data-lang="en" aria-current="{{cur_en}}">EN</a><a href="{{href_zh}}" hreflang="zh-Hant" lang="zh-Hant" data-lang="zh" aria-current="{{cur_zh}}">繁中</a>
@@ -218,7 +218,171 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
-<section id="setup" data-sheet="06">
+<section id="review" data-sheet="06">
+  <div class="wrap split">
+    <div>
+      <p class="secno">{{review_no}}</p>
+      <h2>{{review_h}}</h2>
+      <p class="sub">{{review_sub}}</p>
+      <p class="sub">{{review_sub2}}</p>
+      <pre class="cmd"><code>export GRANADA_REVIEW=off</code></pre>
+    </div>
+    <figure class="page" aria-label="{{rv_label}}">
+      <div class="page-sheet flat rv">
+        <div class="pg-row">
+          <span class="pg-n">1</span>
+          <div>
+            <b>{{pg1}}</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="pg-row rv-sel">
+          <span class="pg-n">2</span>
+          <div>
+            <b>{{pg2}}</b><i class="bars"><em></em><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-note">
+          <small>{{rv_you}}</small>{{rv_comment}}<span class="rv-send">⌘↵ {{rv_send}}</span>
+        </div>
+        <div class="pg-row">
+          <span class="pg-n">3</span>
+          <div>
+            <b>{{pg3}}</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-bar">
+          <span><kbd>⇧C</kbd>{{rv_b_comment}}</span
+          ><span class="ok"><kbd>⇧A</kbd>{{rv_b_approve}}</span
+          ><span class="warn"><kbd>⇧R</kbd>{{rv_b_back}}</span
+          ><span><kbd>⇧T</kbd>{{rv_b_teach}}</span>
+        </div>
+      </div>
+      <figcaption>{{rv_caption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cockpit" data-sheet="07">
+  <div class="wrap split">
+    <div>
+      <p class="secno">{{ck_no}}</p>
+      <h2>{{ck_h}}</h2>
+      <p class="sub">{{ck_sub}}</p>
+      <p class="sub">{{ck_sub2}}</p>
+    </div>
+    <figure class="page" aria-label="{{ck_label}}">
+      <div class="term">
+        <p class="term-hd"><b>/granada</b><span>r-7f3a · feature · add a dark mode toggle</span></p>
+        <div class="zones">
+          <div><small>{{zn_intake}}</small><i class="d"></i><i class="d"></i></div>
+          <div><small>{{zn_design}}</small><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></div>
+          <div><small>{{zn_plan}}</small><i class="d"></i><i class="d"></i></div>
+          <div><small>{{zn_assembly}}</small><i class="d"></i><i class="c"></i><i></i><i></i><i></i></div>
+          <div><small>{{zn_inspection}}</small><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div><small>{{zn_shipping}}</small><i></i><i></i><i></i><i></i></div>
+        </div>
+        <p class="term-row"><span>station</span><b>implement</b><span>task 2 / 4</span></p>
+        <p class="term-row"><span>elapsed</span><b>18m</b><span>cost $1.84</span></p>
+        <p class="term-keys">
+          <kbd>1–9</kbd>run <kbd>o</kbd>open <kbd>q</kbd>quote <kbd>a</kbd>approve <kbd>r</kbd>send
+          back
+        </p>
+      </div>
+      <figcaption>{{ck_caption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cost" data-sheet="08">
+  <div class="wrap split">
+    <div>
+      <p class="secno">{{cost_no}}</p>
+      <h2>{{cost_h}}</h2>
+      <p class="sub">{{cost_sub}}</p>
+      <p class="sub">{{cost_sub2}}</p>
+      <pre class="cmd"><code>granada cost report --since 2026-10-01
+granada quality report --track feature</code></pre>
+    </div>
+    <figure class="page" aria-label="{{rep_label}}">
+      <table class="rep">
+        <thead>
+          <tr>
+            <th>{{rep_station}}</th>
+            <th>{{rep_cost}}</th>
+            <th>{{rep_first}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>clarify</td>
+            <td>$0.12</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>propose</td>
+            <td>$0.41</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>implement</td>
+            <td>$1.92</td>
+            <td class="warn">67%</td>
+          </tr>
+          <tr>
+            <td>review</td>
+            <td>$0.88</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>{{rep_total}}</td>
+            <td>$3.33</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rep-note">{{rep_budget}}</p>
+      <figcaption>{{rep_caption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="help" data-sheet="09">
+  <div class="wrap">
+    <p class="secno">{{help_no}}</p>
+    <h2>{{help_h}}</h2>
+    <p class="sub">{{help_sub}}</p>
+    <div class="sheets help-sheets">
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-01</span>
+          <h3>{{h1_h}}</h3>
+          <code>granada issue report</code>
+        </header>
+        <p>{{h1}}</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-02</span>
+          <h3>{{h2_h}}</h3>
+          <code>granada-how-to</code> <code>granada-teach-me</code>
+        </header>
+        <p>{{h2}}</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-03</span>
+          <h3>{{h3_h}}</h3>
+          <code>granada lesson list</code>
+        </header>
+        <p>{{h3}}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="setup" data-sheet="10">
   <div class="wrap">
     <p class="secno">{{setup_no}}</p>
     <h2>{{setup_h}}</h2>
@@ -244,7 +408,7 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
-<section id="install" data-sheet="07">
+<section id="install" data-sheet="11">
   <div class="wrap">
     <p class="secno">{{install_no}}</p>
     <h2>{{install_h}}</h2>
@@ -292,7 +456,7 @@ granada host doctor</code></pre></div>
 </section>
 </main>
 
-<footer class="foot" data-sheet="08">
+<footer class="foot" data-sheet="12">
   <div class="wrap">
     <div class="foot-grid">
       <div>

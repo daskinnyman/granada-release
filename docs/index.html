@@ -37,14 +37,14 @@
 <div class="titleblock" aria-hidden="true">
   <div>Project</div><div><b>Granada</b></div>
   <div>Release</div><div><b>v0.12.40</b></div>
-  <div>Sheet</div><div><b id="sheet">01 / 08</b></div>
+  <div>Sheet</div><div><b id="sheet">01 / 12</b></div>
 </div>
 
 <nav class="topnav" aria-label="Sections">
   <a class="brand" href="#hero">GRANADA</a>
   <div class="right">
     <div class="links">
-      <a href="#how">How it works</a><a href="#tracks">Tracks</a><a href="#setup">Agent setup</a><a href="#install">Install</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
+      <a href="#how">How it works</a><a href="#tracks">Tracks</a><a href="#review">Tools</a><a href="#setup">Agent setup</a><a href="#install">Install</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
     </div>
     <div class="lang" aria-label="Language / 語言">
       <a href="./" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a><a href="./zh/" hreflang="zh-Hant" lang="zh-Hant" data-lang="zh" aria-current="false">繁中</a>
@@ -218,11 +218,175 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
-<section id="setup" data-sheet="06">
+<section id="review" data-sheet="06">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 06 · Review page</p>
+      <h2>Answer on the page, not in chat.</h2>
+      <p class="sub">At each decision the agent opens the page in your browser. Select a part and comment on it, or answer a clarify question by commenting on it. On the spec, the architecture and the change brief you can also approve or send back with a reason.</p>
+      <p class="sub"><kbd>⇧C</kbd> comment, <kbd>⇧A</kbd> approve, <kbd>⇧R</kbd> send back, <kbd>⇧T</kbd> teach me, <kbd>?</kbd> every key. To keep everything in chat:</p>
+      <pre class="cmd"><code>export GRANADA_REVIEW=off</code></pre>
+    </div>
+    <figure class="page" aria-label="A review page with a comment and the toolbar">
+      <div class="page-sheet flat rv">
+        <div class="pg-row">
+          <span class="pg-n">1</span>
+          <div>
+            <b>The decision and its risk</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="pg-row rv-sel">
+          <span class="pg-n">2</span>
+          <div>
+            <b>The change in plain words</b><i class="bars"><em></em><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-note">
+          <small>Your comment</small>Why a new table? The settings table has the same columns.<span class="rv-send">⌘↵ send</span>
+        </div>
+        <div class="pg-row">
+          <span class="pg-n">3</span>
+          <div>
+            <b>Why it is made</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-bar">
+          <span><kbd>⇧C</kbd>Comment</span
+          ><span class="ok"><kbd>⇧A</kbd>Approve</span
+          ><span class="warn"><kbd>⇧R</kbd>Send back</span
+          ><span><kbd>⇧T</kbd>Teach me</span>
+        </div>
+      </div>
+      <figcaption>Review page · layout, not to scale</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cockpit" data-sheet="07">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 07 · Cockpit</p>
+      <h2>Watch the factory from Claude Code.</h2>
+      <p class="sub">In Claude Code, <code>/granada</code> opens a pane with every active run: its stations in six zones, the current station and its tasks, elapsed time and cost. When nothing runs, it shows what shipped and what waits for you. A toast tells you when a pull request ships.</p>
+      <p class="sub">The pane never advances a run. Its action keys only fill your prompt; you press Enter. <code>granada host sync</code> installs it; <code>--no-mod</code> leaves it out. Codex and Cursor do not have it.</p>
+    </div>
+    <figure class="page" aria-label="The cockpit pane in Claude Code">
+      <div class="term">
+        <p class="term-hd"><b>/granada</b><span>r-7f3a · feature · add a dark mode toggle</span></p>
+        <div class="zones">
+          <div><small>Intake</small><i class="d"></i><i class="d"></i></div>
+          <div><small>Design</small><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></div>
+          <div><small>Plan</small><i class="d"></i><i class="d"></i></div>
+          <div><small>Assembly</small><i class="d"></i><i class="c"></i><i></i><i></i><i></i></div>
+          <div><small>Inspection</small><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div><small>Shipping</small><i></i><i></i><i></i><i></i></div>
+        </div>
+        <p class="term-row"><span>station</span><b>implement</b><span>task 2 / 4</span></p>
+        <p class="term-row"><span>elapsed</span><b>18m</b><span>cost $1.84</span></p>
+        <p class="term-keys">
+          <kbd>1–9</kbd>run <kbd>o</kbd>open <kbd>q</kbd>quote <kbd>a</kbd>approve <kbd>r</kbd>send
+          back
+        </p>
+      </div>
+      <figcaption>Cockpit pane · layout, not to scale</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cost" data-sheet="08">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 08 · Cost and quality</p>
+      <h2>Know what a run costs.</h2>
+      <p class="sub">Granada records what each agent station spent. When you start a run, it names the median cost and time of past runs of the same size. A budget only warns: when a run reaches it, Granada tells you and you decide.</p>
+      <p class="sub"><code>quality report</code> shows, per station, how often the first answer passes, which checks reject answers, send-backs, stalls and what happened to the pull requests.</p>
+      <pre class="cmd"><code>granada cost report --since 2026-10-01
+granada quality report --track feature</code></pre>
+    </div>
+    <figure class="page" aria-label="A cost and quality report">
+      <table class="rep">
+        <thead>
+          <tr>
+            <th>Station</th>
+            <th>Cost</th>
+            <th>First pass</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>clarify</td>
+            <td>$0.12</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>propose</td>
+            <td>$0.41</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>implement</td>
+            <td>$1.92</td>
+            <td class="warn">67%</td>
+          </tr>
+          <tr>
+            <td>review</td>
+            <td>$0.88</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>$3.33</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rep-note">Budget $5 · warns, never stops the run</p>
+      <figcaption>Cost and quality report · example values</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="help" data-sheet="09">
   <div class="wrap">
-    <p class="secno">Sheet 06 · Agent setup</p>
+    <p class="secno">Sheet 09 · Help and lessons</p>
+    <h2>Report a problem. Learn as you go.</h2>
+    <p class="sub">Three tools around the track.</p>
+    <div class="sheets help-sheets">
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-01</span>
+          <h3>Issue report</h3>
+          <code>granada issue report</code>
+        </header>
+        <p>Builds a bug report from a run's state and events. It includes the last error message. It leaves out station outputs and notes, and the intent unless you add <code>--include-intent</code>. Local paths are masked. It prints a prefilled issue link; <code>--submit</code> sends it without a GitHub account.</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-02</span>
+          <h3>How-to and teach-me</h3>
+          <code>granada-how-to</code> <code>granada-teach-me</code>
+        </header>
+        <p>Two skills that host sync installs. <b>granada-how-to</b> answers how to do something with Granada in this repository and asks you before a risky change. <b>granada-teach-me</b> explains a concept as a page for a beginner and changes nothing.</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-03</span>
+          <h3>Lessons</h3>
+          <code>granada lesson list</code>
+        </header>
+        <p>When the same check rejects answers in several runs, Granada proposes a lesson for that station. It tests the station with and without the lesson, and only after your yes adds it as a separate skill for that station.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="setup" data-sheet="10">
+  <div class="wrap">
+    <p class="secno">Sheet 10 · Agent setup</p>
     <h2>Let your agent set it up.</h2>
-    <p class="sub">Paste one line into your agent, in the repository where you want Granada. The agent reads the steps and runs them: Node check, install, host sync, host doctor. It asks you before it commits.</p>
+    <p class="sub">Paste one line into your agent, in the repository where you want Granada. The agent reads the steps and runs them: Node check, install, host sync, host doctor. It asks you before it changes your repository.</p>
 
     <div class="one">
       <code id="one-liner">Read https://daskinnyman.github.io/granada-release/setup-prompt.md and follow it.</code>
@@ -261,32 +425,33 @@ Do not use sudo.
      add ~/.local/bin to PATH for this shell and tell me which shell file to
      change.
 
-3. Run `git rev-parse --show-toplevel` to check that this folder is a git
-   repository. `granada host sync` refuses a folder that is not one.
-   If it is not a repository and the folder is empty (a new project), ask
-   me, then run `git init`. In any other case, stop and ask me.
-
-4. Run `granada host sync`, then `granada host doctor`.
+3. Run `granada host sync`, then `granada host doctor`. Sync installs
+   Granada for my user, in each host's config under the home folder, so it
+   works in every repository and leaves nothing to commit.
    Show me every warning or failure that doctor reports. If doctor says the
    host has not approved the `granada` MCP server, tell me how to approve it
-   in this host.
+   in this host. If I want my team to get these files from git, tell me
+   about `granada host sync --shared`, which writes them into the
+   repository to commit. Ask me before you run it.
 
-5. Run `git status` and show me the files that sync wrote. Suggest that I
-   commit them. Ask me before you commit.
+4. Run `git rev-parse --show-toplevel`. Granada's tracks run in a git
+   repository. If this folder is not one and it is empty (a new project),
+   ask me, then run `git init`. In any other case, tell me that the tracks
+   need a git repository and stop.
 
-6. Only if this repository has an `openspec/` folder, run:
+5. Only if this repository has an `openspec/` folder, run:
        npm install -g @fission-ai/openspec@1.13.2
    Plain markdown specs, Granada's default, need nothing installed.
 
-7. If `gh` is not installed, tell me that the GitHub CLI is optional and
+6. If `gh` is not installed, tell me that the GitHub CLI is optional and
    lets Granada open GitHub draft pull requests.
 
-8. If this repository has a package.json, tell me: the feature track runs a
+7. If this repository has a package.json, tell me: the feature track runs a
    mutation station by default, and it needs `@stryker-mutator/core` as a
    devDependency, committed on the base branch. `granada run start` names
    the command to add it. Do not add it unless I ask.
 
-9. Tell me the three commands I can use now:
+8. Tell me the three commands I can use now:
        /granada-feature &lt;what to add&gt;
        /granada-patch &lt;the bug to fix&gt;
        /granada-bootstrap &lt;the project to create&gt;
@@ -295,9 +460,9 @@ Do not use sudo.
   </div>
 </section>
 
-<section id="install" data-sheet="07">
+<section id="install" data-sheet="11">
   <div class="wrap">
-    <p class="secno">Sheet 07 · Manual install</p>
+    <p class="secno">Sheet 11 · Manual install</p>
     <h2>Install by hand.</h2>
 
     <div class="reqs">
@@ -323,7 +488,7 @@ brew install granada</code></pre></div>
         <h3><span>C</span>Connect your host</h3>
         <div class="code"><button class="copy-btn mini-copy" type="button" data-target="c-sync">Copy</button><pre><code id="c-sync">granada host sync
 granada host doctor</code></pre></div>
-        <p>Run these in your repository. Sync writes the skills, the MCP server entry and the Stop hook. Doctor checks that the host sees them. Commit the files that sync wrote.</p>
+        <p>Sync installs Granada for your user, under your home folder: every repository and worktree gets the skills, the MCP server entry and the Stop hook, and there is nothing to commit. Add <code>--shared</code> to write the files into the repository for your team to commit, or <code>--local</code> for this checkout only. Doctor checks that the host sees them.</p>
       </div>
       <div class="step">
         <h3><span>D</span>Run a track</h3>
@@ -343,7 +508,7 @@ granada host doctor</code></pre></div>
 </section>
 </main>
 
-<footer class="foot" data-sheet="08">
+<footer class="foot" data-sheet="12">
   <div class="wrap">
     <div class="foot-grid">
       <div>

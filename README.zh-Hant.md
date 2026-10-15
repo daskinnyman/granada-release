@@ -55,8 +55,8 @@ Granada 也會記錄每次執行的成本和每個工作站的表現，並能把
 請讀取 https://daskinnyman.github.io/granada-release/zh/setup-prompt.md 並照著步驟執行。
 ```
 
-代理會檢查 Node、安裝 Granada、執行 `host sync` 和 `host doctor`，提交（commit）前會
-先問你。
+代理會檢查 Node、安裝 Granada，並執行 `host sync` 和 `host doctor`。sync 會幫你這個
+使用者把 Granada 裝在家目錄，不需要提交任何檔案。
 
 ### Homebrew
 
@@ -78,11 +78,13 @@ curl -fsSL https://raw.githubusercontent.com/daskinnyman/granada-release/main/in
 ### 連接你的主機，執行一條產線
 
 ```bash
-granada host sync     # 寫入 skills、MCP server 設定和 Stop hook
+granada host sync     # 幫你這個使用者安裝 skills、MCP server 設定和 Stop hook
 granada host doctor   # 檢查主機是否讀得到它們
 ```
 
-請提交 `host sync` 寫入的檔案。然後在儲存庫裡啟動主機 CLI，輸入其中一個指令：
+`host sync` 預設裝在家目錄，每個儲存庫和 worktree 都能用，不需要提交任何檔案。加上
+`--shared` 會把檔案寫進儲存庫，讓團隊提交；加上 `--local` 只裝在這個 checkout。然後
+在儲存庫裡啟動主機 CLI，輸入其中一個指令：
 
 ```text
 /granada-feature add a dark mode toggle to the settings page

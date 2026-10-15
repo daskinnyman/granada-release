@@ -21,31 +21,31 @@ draft pull request。你（AI 程式代理）負責代理工作站的工作；Gr
      這會把 `granada` 放在 ~/.local/bin。如果還是找不到 `granada`，請在
      這個 shell 把 ~/.local/bin 加進 PATH，並告訴我要修改哪個 shell 設定檔。
 
-3. 執行 `git rev-parse --show-toplevel`，確認這個資料夾是 git 儲存庫。
-   `granada host sync` 會拒絕不是儲存庫的資料夾。
-   如果它不是儲存庫，而且資料夾是空的（新專案），請先問我，再執行
-   `git init`。其他情況請停下來問我。
-
-4. 執行 `granada host sync`，然後執行 `granada host doctor`。
+3. 執行 `granada host sync`，然後執行 `granada host doctor`。sync 會幫我
+   這個使用者安裝 Granada，寫進每個主機在家目錄的設定，所以每個儲存庫都能
+   用，也不需要提交任何檔案。
    把 doctor 回報的每個警告或失敗都給我看。如果 doctor 說主機還沒有核准
-   `granada` MCP server，請告訴我在這個主機上要怎麼核准。
+   `granada` MCP server，請告訴我在這個主機上要怎麼核准。如果我想讓團隊
+   從 git 取得這些檔案，請告訴我 `granada host sync --shared` 會把它們寫進
+   儲存庫讓我提交。執行前請先問我。
 
-5. 執行 `git status`，給我看 sync 寫入了哪些檔案。建議我提交（commit）
-   這些檔案。提交前請先問我。
+4. 執行 `git rev-parse --show-toplevel`。Granada 的產線要在 git 儲存庫裡
+   執行。如果這個資料夾不是儲存庫，而且是空的（新專案），請先問我，再執行
+   `git init`。其他情況請告訴我產線需要 git 儲存庫，然後停下來。
 
-6. 只有在這個儲存庫有 `openspec/` 資料夾時，才執行：
+5. 只有在這個儲存庫有 `openspec/` 資料夾時，才執行：
        npm install -g @fission-ai/openspec@1.13.2
    Granada 預設使用一般 markdown 規格，不需要安裝任何東西。
 
-7. 如果沒有安裝 `gh`，請告訴我：GitHub CLI 是選用的，有了它 Granada
+6. 如果沒有安裝 `gh`，請告訴我：GitHub CLI 是選用的，有了它 Granada
    才能在 GitHub 開 draft pull request。
 
-8. 如果這個儲存庫有 package.json，請告訴我：feature 產線預設會執行
+7. 如果這個儲存庫有 package.json，請告訴我：feature 產線預設會執行
    mutation 工作站，它需要把 `@stryker-mutator/core` 列為 devDependency，
    並提交到基底分支。`granada run start` 會列出加入它的指令。除非我要求，
    否則不要自己加入。
 
-9. 告訴我現在可以使用的三個指令：
+8. 告訴我現在可以使用的三個指令：
        /granada-feature <要加入的功能>
        /granada-patch <要修正的 bug>
        /granada-bootstrap <要建立的專案>

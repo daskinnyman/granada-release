@@ -37,14 +37,14 @@
 <div class="titleblock" aria-hidden="true">
   <div>專案</div><div><b>Granada</b></div>
   <div>版本</div><div><b>v0.12.40</b></div>
-  <div>圖號</div><div><b id="sheet">01 / 08</b></div>
+  <div>圖號</div><div><b id="sheet">01 / 12</b></div>
 </div>
 
 <nav class="topnav" aria-label="章節">
   <a class="brand" href="#hero">GRANADA</a>
   <div class="right">
     <div class="links">
-      <a href="#how">運作方式</a><a href="#tracks">產線</a><a href="#setup">代理安裝</a><a href="#install">手動安裝</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
+      <a href="#how">運作方式</a><a href="#tracks">產線</a><a href="#review">工具</a><a href="#setup">代理安裝</a><a href="#install">手動安裝</a><a href="https://github.com/daskinnyman/granada-release">GitHub</a>
     </div>
     <div class="lang" aria-label="Language / 語言">
       <a href="../" hreflang="en" lang="en" data-lang="en" aria-current="false">EN</a><a href="./" hreflang="zh-Hant" lang="zh-Hant" data-lang="zh" aria-current="true">繁中</a>
@@ -218,11 +218,175 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
-<section id="setup" data-sheet="06">
+<section id="review" data-sheet="06">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 06 · 審閱頁</p>
+      <h2>在頁面上回答，不用在對話裡打字。</h2>
+      <p class="sub">每到需要你決定的地方，代理會在瀏覽器打開那一頁。選取一段內容就能留言；clarify 的問題，直接在問題上留言就是回答。規格、架構和 change brief 頁面還可以核准，或附上理由退回。</p>
+      <p class="sub"><kbd>⇧C</kbd> 留言、<kbd>⇧A</kbd> 核准、<kbd>⇧R</kbd> 退回、<kbd>⇧T</kbd> 教我、<kbd>?</kbd> 所有快捷鍵。如果想全部在對話裡完成：</p>
+      <pre class="cmd"><code>export GRANADA_REVIEW=off</code></pre>
+    </div>
+    <figure class="page" aria-label="有一則留言和工具列的審閱頁">
+      <div class="page-sheet flat rv">
+        <div class="pg-row">
+          <span class="pg-n">1</span>
+          <div>
+            <b>要做的決定和風險</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="pg-row rv-sel">
+          <span class="pg-n">2</span>
+          <div>
+            <b>用白話說明這個改動</b><i class="bars"><em></em><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-note">
+          <small>你的留言</small>為什麼要新的資料表？settings 表已經有一樣的欄位。<span class="rv-send">⌘↵ 送出</span>
+        </div>
+        <div class="pg-row">
+          <span class="pg-n">3</span>
+          <div>
+            <b>為什麼要改</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-bar">
+          <span><kbd>⇧C</kbd>留言</span
+          ><span class="ok"><kbd>⇧A</kbd>核准</span
+          ><span class="warn"><kbd>⇧R</kbd>退回</span
+          ><span><kbd>⇧T</kbd>教我</span>
+        </div>
+      </div>
+      <figcaption>審閱頁 · 版面示意，非實際比例</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cockpit" data-sheet="07">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 07 · Cockpit</p>
+      <h2>在 Claude Code 裡看整座工廠。</h2>
+      <p class="sub">在 Claude Code 輸入 <code>/granada</code>，會打開一個面板，列出每個進行中的執行：分成六區的工作站、目前的工作站和它的任務、經過時間和花費。沒有執行在進行時，面板會列出已出貨的改動和等你處理的事。pull request 出貨時會跳出通知。</p>
+      <p class="sub">面板不會推進任何執行。它的動作鍵只會把指令填進輸入框，由你按 Enter。<code>granada host sync</code> 會安裝它；加上 <code>--no-mod</code> 就不裝。Codex 和 Cursor 沒有這個面板。</p>
+    </div>
+    <figure class="page" aria-label="Claude Code 裡的 cockpit 面板">
+      <div class="term">
+        <p class="term-hd"><b>/granada</b><span>r-7f3a · feature · add a dark mode toggle</span></p>
+        <div class="zones">
+          <div><small>受訂</small><i class="d"></i><i class="d"></i></div>
+          <div><small>設計室</small><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i></div>
+          <div><small>規劃</small><i class="d"></i><i class="d"></i></div>
+          <div><small>組裝線</small><i class="d"></i><i class="c"></i><i></i><i></i><i></i></div>
+          <div><small>品檢</small><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div><small>出貨</small><i></i><i></i><i></i><i></i></div>
+        </div>
+        <p class="term-row"><span>station</span><b>implement</b><span>task 2 / 4</span></p>
+        <p class="term-row"><span>elapsed</span><b>18m</b><span>cost $1.84</span></p>
+        <p class="term-keys">
+          <kbd>1–9</kbd>run <kbd>o</kbd>open <kbd>q</kbd>quote <kbd>a</kbd>approve <kbd>r</kbd>send
+          back
+        </p>
+      </div>
+      <figcaption>Cockpit 面板 · 版面示意，非實際比例</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cost" data-sheet="08">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 08 · 成本與品質</p>
+      <h2>每次執行花多少，<br>一目了然。</h2>
+      <p class="sub">Granada 會記錄每個代理工作站花了多少。開始一次執行時，它會告訴你過去同樣大小的執行花費和時間的中位數。預算只會提醒：執行花到預算時，Granada 會告訴你，由你決定要不要繼續。</p>
+      <p class="sub"><code>quality report</code> 會列出每個工作站第一次提交就通過的比例、哪些檢查退回了答案、退回次數、卡住的次數，以及 pull request 最後的結果。</p>
+      <pre class="cmd"><code>granada cost report --since 2026-10-01
+granada quality report --track feature</code></pre>
+    </div>
+    <figure class="page" aria-label="一份成本與品質報告">
+      <table class="rep">
+        <thead>
+          <tr>
+            <th>工作站</th>
+            <th>花費</th>
+            <th>一次通過</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>clarify</td>
+            <td>$0.12</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>propose</td>
+            <td>$0.41</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>implement</td>
+            <td>$1.92</td>
+            <td class="warn">67%</td>
+          </tr>
+          <tr>
+            <td>review</td>
+            <td>$0.88</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>合計</td>
+            <td>$3.33</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rep-note">預算 $5 · 只提醒，不會停下執行</p>
+      <figcaption>成本與品質報告 · 範例數字</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="help" data-sheet="09">
   <div class="wrap">
-    <p class="secno">圖 06 · 代理安裝</p>
+    <p class="secno">圖 09 · 回報與學習</p>
+    <h2>回報問題，邊用邊學。</h2>
+    <p class="sub">產線之外的三個工具。</p>
+    <div class="sheets help-sheets">
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-01</span>
+          <h3>問題回報</h3>
+          <code>granada issue report</code>
+        </header>
+        <p>從一次執行的狀態和事件產生 bug 回報。它會帶入最後一則錯誤訊息，但不會帶入工作站的產出和筆記；除非加上 <code>--include-intent</code>，也不會帶入需求。本機路徑會遮蔽。它會印出一個預先填好的 issue 連結；加上 <code>--submit</code> 就直接送出，不需要 GitHub 帳號。</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-02</span>
+          <h3>How-to 和 teach-me</h3>
+          <code>granada-how-to</code> <code>granada-teach-me</code>
+        </header>
+        <p>host sync 會安裝的兩個 skills。<b>granada-how-to</b> 回答在這個儲存庫裡怎麼用 Granada 做某件事，有風險的改動會先問你。<b>granada-teach-me</b> 把一個概念寫成給初學者看的頁面，不會改動任何東西。</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-03</span>
+          <h3>經驗規則</h3>
+          <code>granada lesson list</code>
+        </header>
+        <p>同一個檢查在好幾次執行裡都退回答案時，Granada 會為那個工作站提出一條經驗規則。它會比較有和沒有這條規則的結果，等你同意後，才把它做成那個工作站的一個獨立 skill。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="setup" data-sheet="10">
+  <div class="wrap">
+    <p class="secno">圖 10 · 代理安裝</p>
     <h2>讓你的代理幫你安裝。</h2>
-    <p class="sub">在要使用 Granada 的儲存庫裡，把下面這一行貼給你的代理。代理會讀取步驟並逐一執行：檢查 Node、安裝、host sync、host doctor。提交（commit）前它會先問你。這個版本的提示詞會請代理用繁體中文回覆你。</p>
+    <p class="sub">在要使用 Granada 的儲存庫裡，把下面這一行貼給你的代理。代理會讀取步驟並逐一執行：檢查 Node、安裝、host sync、host doctor。改動你的儲存庫前它會先問你。這個版本的提示詞會請代理用繁體中文回覆你。</p>
 
     <div class="one">
       <code id="one-liner">請讀取 https://daskinnyman.github.io/granada-release/zh/setup-prompt.md 並照著步驟執行。</code>
@@ -262,31 +426,31 @@ draft pull request。你（AI 程式代理）負責代理工作站的工作；Gr
      這會把 `granada` 放在 ~/.local/bin。如果還是找不到 `granada`，請在
      這個 shell 把 ~/.local/bin 加進 PATH，並告訴我要修改哪個 shell 設定檔。
 
-3. 執行 `git rev-parse --show-toplevel`，確認這個資料夾是 git 儲存庫。
-   `granada host sync` 會拒絕不是儲存庫的資料夾。
-   如果它不是儲存庫，而且資料夾是空的（新專案），請先問我，再執行
-   `git init`。其他情況請停下來問我。
-
-4. 執行 `granada host sync`，然後執行 `granada host doctor`。
+3. 執行 `granada host sync`，然後執行 `granada host doctor`。sync 會幫我
+   這個使用者安裝 Granada，寫進每個主機在家目錄的設定，所以每個儲存庫都能
+   用，也不需要提交任何檔案。
    把 doctor 回報的每個警告或失敗都給我看。如果 doctor 說主機還沒有核准
-   `granada` MCP server，請告訴我在這個主機上要怎麼核准。
+   `granada` MCP server，請告訴我在這個主機上要怎麼核准。如果我想讓團隊
+   從 git 取得這些檔案，請告訴我 `granada host sync --shared` 會把它們寫進
+   儲存庫讓我提交。執行前請先問我。
 
-5. 執行 `git status`，給我看 sync 寫入了哪些檔案。建議我提交（commit）
-   這些檔案。提交前請先問我。
+4. 執行 `git rev-parse --show-toplevel`。Granada 的產線要在 git 儲存庫裡
+   執行。如果這個資料夾不是儲存庫，而且是空的（新專案），請先問我，再執行
+   `git init`。其他情況請告訴我產線需要 git 儲存庫，然後停下來。
 
-6. 只有在這個儲存庫有 `openspec/` 資料夾時，才執行：
+5. 只有在這個儲存庫有 `openspec/` 資料夾時，才執行：
        npm install -g @fission-ai/openspec@1.13.2
    Granada 預設使用一般 markdown 規格，不需要安裝任何東西。
 
-7. 如果沒有安裝 `gh`，請告訴我：GitHub CLI 是選用的，有了它 Granada
+6. 如果沒有安裝 `gh`，請告訴我：GitHub CLI 是選用的，有了它 Granada
    才能在 GitHub 開 draft pull request。
 
-8. 如果這個儲存庫有 package.json，請告訴我：feature 產線預設會執行
+7. 如果這個儲存庫有 package.json，請告訴我：feature 產線預設會執行
    mutation 工作站，它需要把 `@stryker-mutator/core` 列為 devDependency，
    並提交到基底分支。`granada run start` 會列出加入它的指令。除非我要求，
    否則不要自己加入。
 
-9. 告訴我現在可以使用的三個指令：
+8. 告訴我現在可以使用的三個指令：
        /granada-feature &lt;要加入的功能&gt;
        /granada-patch &lt;要修正的 bug&gt;
        /granada-bootstrap &lt;要建立的專案&gt;
@@ -295,9 +459,9 @@ draft pull request。你（AI 程式代理）負責代理工作站的工作；Gr
   </div>
 </section>
 
-<section id="install" data-sheet="07">
+<section id="install" data-sheet="11">
   <div class="wrap">
-    <p class="secno">圖 07 · 手動安裝</p>
+    <p class="secno">圖 11 · 手動安裝</p>
     <h2>手動安裝。</h2>
 
     <div class="reqs">
@@ -323,7 +487,7 @@ brew install granada</code></pre></div>
         <h3><span>C</span>連接你的主機</h3>
         <div class="code"><button class="copy-btn mini-copy" type="button" data-target="c-sync">複製</button><pre><code id="c-sync">granada host sync
 granada host doctor</code></pre></div>
-        <p>在儲存庫裡執行。sync 會寫入 skills、MCP server 設定和 Stop hook；doctor 會檢查主機是否讀得到它們。請提交 sync 寫入的檔案。</p>
+        <p>sync 會幫你這個使用者安裝 Granada，檔案放在家目錄：每個儲存庫和 worktree 都能用 skills、MCP server 設定和 Stop hook，不需要提交任何檔案。加上 <code>--shared</code> 會把檔案寫進儲存庫，讓團隊提交；加上 <code>--local</code> 只裝在這個 checkout。doctor 會檢查主機是否讀得到它們。</p>
       </div>
       <div class="step">
         <h3><span>D</span>執行一條產線</h3>
@@ -343,7 +507,7 @@ granada host doctor</code></pre></div>
 </section>
 </main>
 
-<footer class="foot" data-sheet="08">
+<footer class="foot" data-sheet="12">
   <div class="wrap">
     <div class="foot-grid">
       <div>

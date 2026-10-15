@@ -61,8 +61,9 @@ In the repository where you want Granada, paste this line into your agent:
 Read https://daskinnyman.github.io/granada-release/setup-prompt.md and follow it.
 ```
 
-It checks Node, installs Granada, runs `host sync` and `host doctor`, and asks
-you before it commits.
+It checks Node, installs Granada, and runs `host sync` and `host doctor`.
+Sync installs Granada for your user, under your home folder, so there is
+nothing to commit.
 
 ### Homebrew
 
@@ -84,12 +85,14 @@ Puts `granada` on `PATH` at `~/.local/bin`. Pin a version with `GRANADA_VERSION=
 ### Connect your host and run a track
 
 ```bash
-granada host sync     # writes the skills, the MCP server entry and the Stop hook
+granada host sync     # installs the skills, the MCP server entry and the Stop hook for your user
 granada host doctor   # checks that the host sees them
 ```
 
-Commit the files that `host sync` wrote. Then start your host CLI in the
-repository and type one of:
+By default, `host sync` installs under your home folder for every repository
+and worktree, and there is nothing to commit. Add `--shared` to write the
+files into the repository for your team to commit, or `--local` for this
+checkout only. Then start your host CLI in the repository and type one of:
 
 ```text
 /granada-feature add a dark mode toggle to the settings page
