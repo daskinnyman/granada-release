@@ -218,6 +218,173 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
+<section id="review" data-sheet="06">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 06 · Review 頁面</p>
+      <h2>在頁面上回答，不用在對話裡打字。</h2>
+      <p class="sub">每到一個決定，代理會在瀏覽器打開那一頁。選取一段內容就能留言；clarify 的問題，直接在問題上留言就是回答。規格、架構和 change brief 頁面還可以核准，或附上理由退回。</p>
+      <p class="sub"><kbd>⇧C</kbd> 留言、<kbd>⇧A</kbd> 核准、<kbd>⇧R</kbd> 退回、<kbd>⇧T</kbd> 教我、<kbd>?</kbd> 所有快捷鍵。如果想全部在對話裡完成：</p>
+      <pre class="cmd"><code>export GRANADA_REVIEW=off</code></pre>
+    </div>
+    <figure class="page" aria-label="有一則留言和工具列的 review 頁面">
+      <div class="page-sheet flat rv">
+        <div class="pg-row">
+          <span class="pg-n">1</span>
+          <div>
+            <b>要做的決定和風險</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="pg-row rv-sel">
+          <span class="pg-n">2</span>
+          <div>
+            <b>用白話說明這個改動</b><i class="bars"><em></em><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-note">
+          <small>你的留言</small>為什麼要新的資料表？settings 表已經有一樣的欄位。<span class="rv-send">⌘↵ 送出</span>
+        </div>
+        <div class="pg-row">
+          <span class="pg-n">3</span>
+          <div>
+            <b>為什麼要改</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-bar">
+          <span><kbd>⇧C</kbd>留言</span
+          ><span class="ok"><kbd>⇧A</kbd>核准</span
+          ><span class="warn"><kbd>⇧R</kbd>退回</span
+          ><span><kbd>⇧T</kbd>教我</span>
+        </div>
+      </div>
+      <figcaption>Review 頁面 · 版面示意，非實際比例</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cockpit" data-sheet="07">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 07 · Cockpit</p>
+      <h2>在 Claude Code 裡看整座工廠。</h2>
+      <p class="sub">在 Claude Code 輸入 <code>/granada</code>，會打開一個面板，列出每條進行中的 run：分成六區的工作站、目前的工作站和它的任務、經過時間和花費。沒有 run 在跑時，面板會列出已出貨的改動和等你處理的事。pull request 出貨時會跳出通知。</p>
+      <p class="sub">面板不會替你做事。它的按鍵只會把指令填進輸入框，由你按 Enter。<code>granada host sync</code> 會安裝它；加上 <code>--no-mod</code> 就不裝。Codex 和 Cursor 沒有這個面板。</p>
+    </div>
+    <figure class="page" aria-label="Claude Code 裡的 cockpit 面板">
+      <div class="term">
+        <p class="term-hd"><b>/granada</b><span>r-7f3a · feature · add a dark mode toggle</span></p>
+        <div class="zones">
+          <div><small>Intake</small><i class="d"></i><i class="d"></i><i class="d"></i></div>
+          <div>
+            <small>Design</small><i class="d"></i><i class="d"></i><i class="d"></i
+            ><i class="d"></i>
+          </div>
+          <div><small>Plan</small><i class="d"></i><i class="d"></i></div>
+          <div><small>Assembly</small><i class="d"></i><i class="c"></i><i></i><i></i></div>
+          <div><small>Inspection</small><i></i><i></i><i></i><i></i></div>
+          <div><small>Shipping</small><i></i><i></i><i></i></div>
+        </div>
+        <p class="term-row"><span>station</span><b>implement</b><span>task 2 / 4</span></p>
+        <p class="term-row"><span>elapsed</span><b>18m</b><span>cost $1.84</span></p>
+        <p class="term-keys">
+          <kbd>1–9</kbd>run <kbd>o</kbd>open <kbd>q</kbd>quote <kbd>a</kbd>approve <kbd>r</kbd>send
+          back
+        </p>
+      </div>
+      <figcaption>Cockpit 面板 · 版面示意，非實際比例</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cost" data-sheet="08">
+  <div class="wrap split">
+    <div>
+      <p class="secno">圖 08 · 成本與品質</p>
+      <h2>知道一條 run 花多少。</h2>
+      <p class="sub">Granada 會記錄每個代理工作站花了多少。開始一條 run 時，它會告訴你過去同樣大小的 run 花費和時間的中位數。預算只會提醒：run 花到預算時，Granada 會告訴你，由你決定要不要繼續。</p>
+      <p class="sub"><code>quality report</code> 會列出每個工作站第一次提交就通過的比例、哪些檢查退回了答案、退回次數、卡住的次數，以及 pull request 最後的結果。</p>
+      <pre class="cmd"><code>granada cost report --since 2026-10-01
+granada quality report --track feature</code></pre>
+    </div>
+    <figure class="page" aria-label="一份成本報告">
+      <table class="rep">
+        <thead>
+          <tr>
+            <th>工作站</th>
+            <th>花費</th>
+            <th>一次通過</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>clarify</td>
+            <td>$0.12</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>propose</td>
+            <td>$0.41</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>implement</td>
+            <td>$1.92</td>
+            <td class="warn">67%</td>
+          </tr>
+          <tr>
+            <td>review</td>
+            <td>$0.88</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>合計</td>
+            <td>$3.33</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rep-note">預算 $5 · 只提醒，不會停下 run</p>
+      <figcaption>成本報告 · 範例數字</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="help" data-sheet="09">
+  <div class="wrap">
+    <p class="secno">圖 09 · 回報與學習</p>
+    <h2>回報問題，邊用邊學。</h2>
+    <p class="sub">產線之外的三個工具。</p>
+    <div class="sheets">
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-01</span>
+          <h3>問題回報</h3>
+          <code>granada issue report</code>
+        </header>
+        <p>從一條 run 的狀態和事件產生 bug 回報。它不會帶入工作站的產出、筆記和錯誤訊息；除非加上 <code>--include-intent</code>，也不會帶入需求。本機路徑會被遮掉。它會印出一個預先填好的 issue 連結；加上 <code>--submit</code> 就直接送出，不需要 GitHub 帳號。</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-02</span>
+          <h3>How-to 和 teach-me</h3>
+          <code>granada-how-to · granada-teach-me</code>
+        </header>
+        <p>host sync 會安裝的兩個 skills。<b>granada-how-to</b> 回答在這個儲存庫裡怎麼用 Granada 做某件事，有風險的改動會先問你。<b>granada-teach-me</b> 把一個概念寫成給初學者看的頁面，不會改動任何東西。</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-03</span>
+          <h3>Lessons</h3>
+          <code>granada lesson list</code>
+        </header>
+        <p>同一個檢查在好幾條 run 裡都退回答案時，Granada 會為那個工作站提出一條 lesson。它會比較有和沒有這條 lesson 的結果，等你同意後才把它加進那個工作站的 skill。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="setup" data-sheet="10">
   <div class="wrap">
     <p class="secno">圖 10 · 代理安裝</p>

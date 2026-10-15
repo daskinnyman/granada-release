@@ -218,6 +218,173 @@ granada run resume --run-id &lt;id&gt; --from &lt;station&gt;</code></pre></div>
   </div>
 </section>
 
+<section id="review" data-sheet="06">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 06 · Review page</p>
+      <h2>Answer on the page, not in chat.</h2>
+      <p class="sub">At each decision the agent opens the page in your browser. Select a part and comment on it, or answer a clarify question by commenting on it. On the spec, the architecture and the change brief you can also approve or send back with a reason.</p>
+      <p class="sub"><kbd>⇧C</kbd> comment, <kbd>⇧A</kbd> approve, <kbd>⇧R</kbd> send back, <kbd>⇧T</kbd> teach me, <kbd>?</kbd> every key. To keep everything in chat:</p>
+      <pre class="cmd"><code>export GRANADA_REVIEW=off</code></pre>
+    </div>
+    <figure class="page" aria-label="A review page with a comment and the toolbar">
+      <div class="page-sheet flat rv">
+        <div class="pg-row">
+          <span class="pg-n">1</span>
+          <div>
+            <b>The decision and its risk</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="pg-row rv-sel">
+          <span class="pg-n">2</span>
+          <div>
+            <b>The change in plain words</b><i class="bars"><em></em><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-note">
+          <small>Your comment</small>Why a new table? The settings table has the same columns.<span class="rv-send">⌘↵ send</span>
+        </div>
+        <div class="pg-row">
+          <span class="pg-n">3</span>
+          <div>
+            <b>Why it is made</b><i class="bars"><em></em><em></em></i>
+          </div>
+        </div>
+        <div class="rv-bar">
+          <span><kbd>⇧C</kbd>Comment</span
+          ><span class="ok"><kbd>⇧A</kbd>Approve</span
+          ><span class="warn"><kbd>⇧R</kbd>Send back</span
+          ><span><kbd>⇧T</kbd>Teach me</span>
+        </div>
+      </div>
+      <figcaption>Review page · layout, not to scale</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cockpit" data-sheet="07">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 07 · Cockpit</p>
+      <h2>Watch the factory from Claude Code.</h2>
+      <p class="sub">In Claude Code, <code>/granada</code> opens a pane with every active run: its stations in six zones, the current station and its tasks, elapsed time and cost. When nothing runs, it shows what shipped and what waits for you. A toast tells you when a pull request ships.</p>
+      <p class="sub">The pane never acts for you. Its keys only fill your prompt, and you press Enter. <code>granada host sync</code> installs it; <code>--no-mod</code> leaves it out. Codex and Cursor do not have it.</p>
+    </div>
+    <figure class="page" aria-label="The cockpit pane in Claude Code">
+      <div class="term">
+        <p class="term-hd"><b>/granada</b><span>r-7f3a · feature · add a dark mode toggle</span></p>
+        <div class="zones">
+          <div><small>Intake</small><i class="d"></i><i class="d"></i><i class="d"></i></div>
+          <div>
+            <small>Design</small><i class="d"></i><i class="d"></i><i class="d"></i
+            ><i class="d"></i>
+          </div>
+          <div><small>Plan</small><i class="d"></i><i class="d"></i></div>
+          <div><small>Assembly</small><i class="d"></i><i class="c"></i><i></i><i></i></div>
+          <div><small>Inspection</small><i></i><i></i><i></i><i></i></div>
+          <div><small>Shipping</small><i></i><i></i><i></i></div>
+        </div>
+        <p class="term-row"><span>station</span><b>implement</b><span>task 2 / 4</span></p>
+        <p class="term-row"><span>elapsed</span><b>18m</b><span>cost $1.84</span></p>
+        <p class="term-keys">
+          <kbd>1–9</kbd>run <kbd>o</kbd>open <kbd>q</kbd>quote <kbd>a</kbd>approve <kbd>r</kbd>send
+          back
+        </p>
+      </div>
+      <figcaption>Cockpit pane · layout, not to scale</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="cost" data-sheet="08">
+  <div class="wrap split">
+    <div>
+      <p class="secno">Sheet 08 · Cost and quality</p>
+      <h2>Know what a run costs.</h2>
+      <p class="sub">Granada records what each agent station spent. When you start a run, it names the median cost and time of past runs of the same size. A budget only warns: when a run reaches it, Granada tells you and you decide.</p>
+      <p class="sub"><code>quality report</code> shows, per station, how often the first answer passes, which checks reject answers, send-backs, stalls and what happened to the pull requests.</p>
+      <pre class="cmd"><code>granada cost report --since 2026-10-01
+granada quality report --track feature</code></pre>
+    </div>
+    <figure class="page" aria-label="A cost report">
+      <table class="rep">
+        <thead>
+          <tr>
+            <th>Station</th>
+            <th>Cost</th>
+            <th>First pass</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>clarify</td>
+            <td>$0.12</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>propose</td>
+            <td>$0.41</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>implement</td>
+            <td>$1.92</td>
+            <td class="warn">67%</td>
+          </tr>
+          <tr>
+            <td>review</td>
+            <td>$0.88</td>
+            <td>100%</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>$3.33</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="rep-note">Budget $5 · warns, never stops the run</p>
+      <figcaption>Cost report · example values</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="help" data-sheet="09">
+  <div class="wrap">
+    <p class="secno">Sheet 09 · Help and lessons</p>
+    <h2>Report a problem. Learn as you go.</h2>
+    <p class="sub">Three tools around the track.</p>
+    <div class="sheets">
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-01</span>
+          <h3>Issue report</h3>
+          <code>granada issue report</code>
+        </header>
+        <p>Builds a bug report from a run's state and events. It leaves out station outputs, notes and errors, and the intent unless you add <code>--include-intent</code>. Local paths are masked. It prints a prefilled issue link; <code>--submit</code> sends it without a GitHub account.</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-02</span>
+          <h3>How-to and teach-me</h3>
+          <code>granada-how-to · granada-teach-me</code>
+        </header>
+        <p>Two skills that host sync installs. <b>granada-how-to</b> answers how to do something with Granada in this repository and asks you before a risky change. <b>granada-teach-me</b> explains a concept as a page for a beginner and changes nothing.</p>
+      </article>
+      <article class="bp">
+        <header>
+          <span class="bp-no">H-03</span>
+          <h3>Lessons</h3>
+          <code>granada lesson list</code>
+        </header>
+        <p>When the same check rejects answers in several runs, Granada proposes a lesson for that station. It tests the station with and without the lesson, and adds it to the station's skill only after your yes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="setup" data-sheet="10">
   <div class="wrap">
     <p class="secno">Sheet 10 · Agent setup</p>
