@@ -113,8 +113,8 @@
     if (sheetNo) {
       var cur = "01";
       marks.forEach(function (m) { if (m.getBoundingClientRect().top < vh * 0.5) cur = m.getAttribute("data-sheet"); });
-      if (window.innerHeight + y >= document.documentElement.scrollHeight - 4) cur = "08";
-      sheetNo.textContent = cur + " / 08";
+      if (window.innerHeight + y >= document.documentElement.scrollHeight - 4) cur = "12";
+      sheetNo.textContent = cur + " / 12";
     }
   }
 
