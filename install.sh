@@ -193,9 +193,9 @@ esac
 
 log "installed ${bin_path}"
 log "next steps:"
-log "  1. in your repository (an empty folder needs \`git init\` first):"
+log "  1. once, for every repository and worktree (writes under your home folder):"
 log "       granada host sync"
-log "  2. start your host CLI in that repository and run a track:"
+log "  2. start your host CLI in a repository (an empty folder needs \`git init\` first) and run a track:"
 log "       /granada-feature, /granada-patch or /granada-bootstrap"
 log "  Only if your repository writes its specs with OpenSpec, install it globally,"
 log "  so your host CLI finds it on its own PATH:"
