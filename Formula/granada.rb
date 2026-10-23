@@ -1,9 +1,9 @@
 class Granada < Formula
   desc "Host-native software factory: one-line intent in, merge-ready draft PR out, run from inside your agent CLI"
   homepage "https://github.com/daskinnyman/granada-release"
-  url "https://github.com/daskinnyman/granada-release/releases/download/v0.12.52/granada-0.12.52.tgz"
-  sha256 "0b40ab446b45df1f900caccb45b5141d1280f155973dab1fad7aea82016417b0"
-  version "0.12.52"
+  url "https://github.com/daskinnyman/granada-release/releases/download/v0.12.53/granada-0.12.53.tgz"
+  sha256 "d8192525b2b5d97662a6ce51bdb201ebb022118bf8520447f5d9ffc074c10284"
+  version "0.12.53"
 
   depends_on "node"
 
