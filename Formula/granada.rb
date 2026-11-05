@@ -1,18 +1,18 @@
 class Granada < Formula
   desc "Host-native software factory: one-line intent in, merge-ready draft PR out, run from inside your agent CLI"
   homepage "https://github.com/daskinnyman/granada-release"
-  url "https://github.com/daskinnyman/granada-release/releases/download/v0.12.64/granada-0.12.64.tgz"
-  sha256 "b320b99ca3e21c77d28656a9ef31533a0d5432313408a15f6e4e8d87626529e0"
-  version "0.12.64"
+  url "https://github.com/daskinnyman/granada-release/releases/download/v0.12.65/granada-0.12.65.tgz"
+  sha256 "fe5b28e310f75a72dbcd2fbc671aed86ece05c90855cec2d18c1401a3a110f84"
+  version "0.12.65"
 
   depends_on "node"
 
   def install
-    # Release tarball already contains dist/. Drop the build toolchain so
+    # Release tarball already contains dist/. Drop the build toolchain (not typescript: Stryker imports it) so
     # Homebrew does not rewrite tsdown → yuku-codegen Mach-O install names.
     require "json"
     pkg = JSON.parse((buildpath/"package.json").read)
-    %w[tsdown tsx typescript].each { |name| pkg["dependencies"]&.delete(name) }
+    %w[tsdown tsx].each { |name| pkg["dependencies"]&.delete(name) }
     (buildpath/"package.json").atomic_write(JSON.pretty_generate(pkg) + "\n")
     system "npm", "install", "--ignore-scripts", "--omit=dev", *std_npm_args
     bin.install_symlink Dir["#{libexec}/bin/*"]
