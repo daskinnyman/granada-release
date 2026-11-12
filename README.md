@@ -80,7 +80,7 @@ Update with `brew upgrade granada` (or `granada update`).
 curl -fsSL https://raw.githubusercontent.com/daskinnyman/granada-release/main/install.sh | bash
 ```
 
-Puts `granada` on `PATH` at `~/.local/bin`. Pin a version with `GRANADA_VERSION=0.12.74`.
+Puts `granada` on `PATH` at `~/.local/bin`. Pin a version with `GRANADA_VERSION=0.12.75`.
 
 ### Connect your host and run a track
 
