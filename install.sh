@@ -57,7 +57,7 @@ download_with_gh() {
   local tag
   if [[ "${VERSION}" == "latest" ]]; then
     gh release download --repo "${REPO}" --pattern 'granada.tgz' --dir "${dest_dir}" 2>/dev/null \
-      || gh release download --repo "${REPO}" --pattern 'granada-*.tgz' --dir "${dest_dir}"
+      || gh release download --repo "${REPO}" --pattern 'granada-[0-9]*.tgz' --dir "${dest_dir}"
   else
     tag="${VERSION#v}"
     gh release download "v${tag}" --repo "${REPO}" --pattern "granada-${tag}.tgz" --dir "${dest_dir}" \
@@ -92,7 +92,7 @@ try {
 }
 const assets = Array.isArray(data.assets) ? data.assets : [];
 const asset = assets.find((item) => item.name === "granada.tgz")
-  ?? assets.find((item) => /^granada-.*\.tgz$/.test(String(item.name)));
+  ?? assets.find((item) => /^granada-\d+\.\d+\.\d+.*\.tgz$/.test(String(item.name)));
 if (!asset || asset.id == null || !asset.name) process.exit(2);
 process.stdout.write(JSON.stringify({ id: asset.id, name: asset.name }));
 ')" || die "failed to fetch ${api} (private repo needs gh auth login or GITHUB_TOKEN)"
@@ -124,7 +124,7 @@ try {
 first_tarball() {
   local dir="$1"
   local match
-  for match in "${dir}"/granada.tgz "${dir}"/granada-*.tgz; do
+  for match in "${dir}"/granada.tgz "${dir}"/granada-[0-9]*.tgz; do
     if [[ -f "${match}" ]]; then
       printf '%s' "${match}"
       return 0
